@@ -109,7 +109,7 @@ static void responderConfig() {
 #define TOMAR_SEG(nombre, minimo, maximo, campo) \
   if (!leerEntero(nombre, minimo, maximo, valorI)) { servidor.send(400, "text/plain", "Valor invalido: " nombre); return; } \
   nuevo.campo = static_cast<unsigned long>(valorI) * 1000UL;
-  TOMAR_FLOAT("umbral", 30, 100, umbralAltoDb)
+  TOMAR_FLOAT("umbral", 10, 100, umbralAltoDb)
   TOMAR_FLOAT("histeresis", 1, 15, histeresisDb)
   TOMAR_FLOAT("offset", -30, 70, offsetDb)
   TOMAR_SEG("cierre", 5, 3600, tiempoCierreMs)

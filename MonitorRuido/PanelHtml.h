@@ -30,7 +30,7 @@ button.secondary{background:#29405d}button:hover{filter:brightness(1.15)}.button
 <section class="card"><h2>Configuración y control</h2>
 <form id="config">
 <div class="two">
-<label>Umbral alto (dB)<input name="umbral" type="number" min="30" max="100" step="0.1" required></label>
+<label>Umbral alto (dB)<input name="umbral" type="number" min="10" max="100" step="0.1" required></label>
 <label>Histéresis (dB)<input name="histeresis" type="number" min="1" max="15" step="0.1" required></label>
 <label>Offset de calibración (dB)<input name="offset" type="number" min="-30" max="70" step="0.1" required></label>
 <label>Tiempo de cierre (segundos)<input name="cierre" type="number" min="5" max="3600" required></label>
