@@ -21,7 +21,7 @@ button.secondary{background:#29405d}button:hover{filter:brightness(1.15)}.button
 </style></head><body>
 <header><h1>Monitor de ruido</h1><p>NodeMCU ESP8266 · control del ruido del pasillo</p></header>
 <div class="grid">
-  <section class="card"><div class="muted">Nivel estimado</div><div class="metric" id="nivel">—</div><div class="muted">Sin ponderación A; requiere calibración</div></section>
+  <section class="card"><div class="muted">Nivel estimado</div><div class="metric" id="nivel">—</div><div class="muted">Nivel relativo estimado</div></section>
   <section class="card"><div class="muted">Estado</div><div class="flag" id="estado">—</div><div class="muted">Umbral alto: <span id="umbral">—</span> dB</div></section>
   <section class="card"><div class="muted">Puerta</div><div class="flag" id="puerta">—</div><div class="muted">Modo: <span id="modoActual">—</span></div></section>
 </div>
