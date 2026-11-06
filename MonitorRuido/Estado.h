@@ -6,21 +6,30 @@ enum class EstadoRuido : uint8_t { NORMAL, PRECAUCION, CERRADA };
 enum class ModoPuerta : uint8_t { AUTOMATICO, ABIERTA, CERRADA };
 
 struct Parametros {
+  // Nivel de ruido: valores iniciales definidos en Config.h.
   float umbralAltoDb = UMBRAL_RUIDO_DB;
-  float histeresisDb = 3.0f;
-  float offsetDb = OFFSET_CALIBRACION_DB; // Inicial, REQUIERE calibracion contra sonometro.
+  float histeresisDb = HISTERESIS_DB;
+  float offsetDb = OFFSET_CALIBRACION_DB; // Estimacion; no equivale a dB(A) calibrados.
 
-  unsigned long tiempoCierreMs = 180000UL;      // 3 minutos
-  unsigned long tiempoReaperturaMs = 120000UL;  // 2 minutos
-  unsigned long toleranciaMs = 10000UL;        // 10 segundos
-  unsigned long preavisoMs = 5000UL;
-  unsigned long tiempoAvisoMs = 60000UL;       // Telegram: 60 segundos
-  unsigned long enfriamientoAvisoMs = 300000UL; // Telegram: 5 minutos
+  // Duraciones: Config.h usa segundos, la logica de control usa milisegundos.
+  unsigned long tiempoCierreMs = TIEMPO_CIERRE_S * 1000UL;
+  unsigned long tiempoReaperturaMs = TIEMPO_REAPERTURA_S * 1000UL;
+  unsigned long toleranciaMs = TOLERANCIA_PAUSAS_S * 1000UL;
+  unsigned long preavisoMs = PREAVISO_BUZZER_S * 1000UL;
 
-  unsigned int horaInicio = 7;
-  unsigned int horaFin = 22;
-  bool actividadFinDeSemana = false;
-  bool buzzerSilenciado = false;
+  // Notificaciones Telegram.
+  unsigned long tiempoAvisoMs = TIEMPO_AVISO_TELEGRAM_S * 1000UL;
+  unsigned long enfriamientoAvisoMs = ESPERA_ENTRE_ALERTAS_S * 1000UL;
+
+  // Horario de actividad habitual.
+  unsigned int horaInicio = HORA_INICIO_HABITUAL;
+  unsigned int horaFin = HORA_FIN_HABITUAL;
+  bool actividadFinDeSemana = ACTIVIDAD_FIN_SEMANA;
+
+  // Ajuste inicial del buzzer.
+  bool buzzerSilenciado = BUZZER_SILENCIADO;
+
+  // El modo de la puerta sigue siendo un control operativo del panel.
   ModoPuerta modoPuerta = ModoPuerta::AUTOMATICO;
 };
 
