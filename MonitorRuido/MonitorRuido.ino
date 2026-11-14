@@ -77,16 +77,23 @@ static void iniciarRed() {
     Serial.print(F("Conectado. Panel: http://"));
     Serial.println(WiFi.localIP());
   } else {
-    // Conserva STA para recuperar Internet si luego aparece el router.
-    WiFi.mode(WIFI_AP_STA);
-    WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
-    if (WiFi.softAP(AP_NOMBRE, AP_CLAVE)) {
-      Serial.print(F("Red de respaldo: "));
-      Serial.println(AP_NOMBRE);
-      Serial.print(F("Panel: http://"));
+    WiFi.setAutoReconnect(false);
+    WiFi.mode(WIFI_AP);
+
+    IPAddress ipAP(192, 168, 4, 1);
+    IPAddress mascara(255, 255, 255, 0);
+
+    // Configurar la interfaz IP del AP.
+    if (!WiFi.softAPConfig(ipAP, ipAP, mascara)) {
+      Serial.println(F("[AP] Error configurando IP"));
+    }
+
+    if (WiFi.softAP(AP_NOMBRE, AP_CLAVE, 1, false, 4)) {
+      Serial.println(F("[AP] Red iniciada"));
+      Serial.print(F("[AP] IP: "));
       Serial.println(WiFi.softAPIP());
     } else {
-      Serial.println(F("Error creando la red AP"));
+      Serial.println(F("[AP] Error creando la red"));
     }
   }
 
