@@ -47,7 +47,7 @@ button.secondary{background:#29405d}button:hover{filter:brightness(1.15)}.button
 <label><input name="silencio" type="checkbox">Silenciar buzzer</label>
 <div class="buttons"><button type="submit">Guardar cambios</button><button type="button" class="secondary" id="telegram">Probar Telegram</button></div>
 </form>
-<p class="muted">Los cambios son temporales: al reiniciar se recuperan los valores del código. Los controles de puerta indican una orden simulada hasta conectar el servo.</p>
+<p class="muted">Los cambios son temporales: al reiniciar se recuperan los valores del código.</p>
 <div id="mensaje" role="status"></div></section>
 <script>
 const $=id=>document.getElementById(id);
